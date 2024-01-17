@@ -1,0 +1,78 @@
+package com.telebilling.service; 
+import com.telebilling.service.client.TELEWebServiceService;
+import java.io.*;
+import java.net.Socket;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.concurrent.TimeUnit;
+import java.awt.BorderLayout;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.beans.Statement;
+import java.net.*;
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+
+
+public class Client {
+
+//Most of the values and calling service is manual here. We can take as input by writing code too. 
+
+    public static void main(String[] args) throws IOException
+    {   
+    	TELEWebServiceService service = new TELEWebServiceService();
+        com.telebilling.service.client.TELEWebService TELEWebService = service.getTELEWebServicePort(); 
+   
+ 
+        JFrame frmHome = new JFrame("Login");
+        frmHome.setTitle("Home");
+        frmHome.setBackground(Color.WHITE);
+        JPanel panel = new JPanel();
+        frmHome.getContentPane().add(panel);
+        frmHome.setSize(339, 369);
+        frmHome.setLocationRelativeTo(null);
+        frmHome.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frmHome.setVisible(true);
+        frmHome.getContentPane().add(panel);
+        panel.setLayout(null);
+        
+        JPanel panel_1 = new JPanel();
+        panel_1.setBounds(0, 0, 184, 261);
+        panel.add(panel_1);
+        panel_1.setLayout(null);
+        
+        JButton btnNewButton = new JButton("User");
+        btnNewButton.addMouseListener(new MouseAdapter() {
+        	@Override
+        	public void mouseClicked(MouseEvent e) {
+        	}
+        });
+        btnNewButton.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        	}
+        });
+        btnNewButton.setBounds(42, 41, 100, 43);
+        panel_1.add(btnNewButton);
+        
+        JButton btnNewButton_1 = new JButton("Admin");
+        btnNewButton_1.addMouseListener(new MouseAdapter() {
+        	@Override
+        	public void mouseClicked(MouseEvent e) {
+        	}
+        });
+        btnNewButton_1.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        	}
+        });
+        btnNewButton_1.setBounds(42, 95, 100, 43);
+        panel_1.add(btnNewButton_1);
+        frmHome.setSize(200, 300);
+        frmHome.setLocationRelativeTo(null);
+        frmHome.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frmHome.setVisible(true);
+        }
+}

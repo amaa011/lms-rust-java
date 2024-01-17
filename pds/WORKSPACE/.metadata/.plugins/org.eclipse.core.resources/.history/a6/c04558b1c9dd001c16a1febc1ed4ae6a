@@ -1,0 +1,101 @@
+package com.telebilling.service;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.io.IOException;
+import java.net.UnknownHostException;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+import com.telebilling.service.client.TELEWebServiceService;
+import java.awt.Font;
+import javax.swing.JTextField;
+import javax.swing.JLabel;
+
+
+public class Admin extends JFrame implements ActionListener
+{
+	
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	JPanel panel;
+	   JButton cancel;
+	   
+	   Admin() {
+	   	setResizable(false);
+	      
+	      panel = new JPanel();
+	      panel.setBackground(new Color(255, 255, 224));
+	      panel.setLayout(null);
+	      
+	      setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	      getContentPane().add(panel, BorderLayout.CENTER);
+	      
+	      JButton btnBack = new JButton("Delete Book");
+	      btnBack.addActionListener(new ActionListener() {
+	      	public void actionPerformed(ActionEvent e) {
+	      	}
+	      });
+	    
+	     
+	      btnBack.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 12));
+	      btnBack.setBackground(new Color(154, 205, 50));
+	      btnBack.setBounds(112, 88, 126, 34);
+	      panel.add(btnBack);
+	      
+	      JButton btnHome = new JButton("Home");
+	      btnHome.addActionListener(new ActionListener() {
+	      	public void actionPerformed(ActionEvent e) {
+	      		Back();
+	      	}
+	      });
+	      btnHome.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 12));
+	      btnHome.setBackground(new Color(154, 205, 50));
+	      btnHome.setBounds(112, 138, 126, 34);
+	      panel.add(btnHome);
+	      
+	      JButton btnAddBook = new JButton("Add Book");
+	      btnAddBook.addActionListener(new ActionListener() {
+	      	public void actionPerformed(ActionEvent e) {
+	      	}
+	      });
+	      btnAddBook.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 12));
+	      btnAddBook.setBackground(new Color(154, 205, 50));
+	      btnAddBook.setBounds(112, 33, 126, 34);
+	      panel.add(btnAddBook);
+	      setTitle("User");
+	      setSize(384,264);
+	      setVisible(true);
+	      
+	      
+	      
+	   }
+		protected void Back() {
+			this.dispose();
+			  new Client();
+	}
+
+
+	  	
+		public static void main(String []args) throws UnknownHostException
+		{
+			
+			new Admin();		
+			
+		}
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+}
+	

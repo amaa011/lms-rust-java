@@ -1,0 +1,79 @@
+package com.webilling.service;
+import javax.jws.WebMethod;
+import javax.jws.WebService;
+
+@WebService
+
+public class WEWebService 
+{
+
+	@WebMethod
+	//***********************************************************
+	//methods to pay the amount..
+	//***********************************************************
+	public String payWaterBillProcess(String BillNo, String Amount)
+	{
+		return "Transaction for Account No" + BillNo + " completed sucessfully!";
+	}
+	public String payElectricityBillProcess(String BillNo, String Amount)
+	{
+		return "Transaction for Account No" + BillNo + " completed sucessfully!";
+	}
+	
+	//***********************************************************
+	//methods to return actual amount balance for customer to pay
+	//***********************************************************
+	public String payWEBillAmount(String Type, String Month, String AccountNo)
+	{
+		String amount="0.00";
+		if(Type == "WATERBILL")
+		{
+			 amount = Wcalculate(Month, AccountNo);
+		}else{
+			 amount = Ecalculate(Month, AccountNo);
+		}
+		return amount;
+	}
+		
+	String Wcalculate(String Month, String AccountNo)
+    {
+		String amount="0.00";
+		if(AccountNo == "W21025")
+		{
+			if(Month=="January")
+			{
+				amount = "30.00";
+			}else if(Month=="February"){  
+				amount = "45.00";
+			}else if(Month=="March"){  
+				amount = "60.00";
+			}else if(Month=="April"){  
+				amount = "75.00";
+			}else{
+				amount="0.00";
+			}
+      }
+      	return amount;	
+    }
+	String Ecalculate(String Month, String AccountNo)
+    {
+		String amount="0.00";
+		if(AccountNo == "W21025")
+		{
+			if(Month=="January")
+			{
+				amount = "30.00";
+			}else if(Month=="February"){  
+				amount = "45.00";
+			}else if(Month=="March"){  
+				amount = "60.00";
+			}else if(Month=="April"){  
+				amount = "75.00";
+			}else{
+				amount="0.00";
+			}
+      }
+      	return amount;	
+    }
+	
+}

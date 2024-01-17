@@ -1,0 +1,105 @@
+
+
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.JLabel;
+import java.awt.Color;
+import javax.swing.JTextField;
+import java.awt.Font;
+import javax.swing.JButton;
+import javax.swing.JTable;
+import javax.swing.JScrollPane;
+
+public class Bborrow extends JFrame {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private JPanel contentPane;
+	private JTextField textField;
+	private JTextField textField_1;
+	private JTable table;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Bborrow frame = new Bborrow();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public Bborrow() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 798, 517);
+		contentPane = new JPanel();
+		contentPane.setBackground(new Color(255, 255, 255));
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		JLabel lblNewLabel = new JLabel("Book ID");
+		lblNewLabel.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 16));
+		lblNewLabel.setBounds(50, 108, 95, 27);
+		contentPane.add(lblNewLabel);
+		
+		textField = new JTextField();
+		textField.setBounds(155, 110, 153, 27);
+		contentPane.add(textField);
+		textField.setColumns(10);
+		
+		JLabel lblDate = new JLabel("Date ");
+		lblDate.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 16));
+		lblDate.setBounds(50, 177, 95, 27);
+		contentPane.add(lblDate);
+		
+		textField_1 = new JTextField();
+		textField_1.setColumns(10);
+		textField_1.setBounds(155, 179, 153, 27);
+		contentPane.add(textField_1);
+		
+		JButton btnNewButton = new JButton("Borrow");
+		btnNewButton.setBackground(new Color(255, 0, 51));
+		btnNewButton.setForeground(new Color(255, 255, 255));
+		btnNewButton.setBounds(50, 324, 89, 23);
+		contentPane.add(btnNewButton);
+		
+		JButton button = new JButton("Borrow");
+		button.setBackground(new Color(255, 0, 51));
+		button.setForeground(new Color(255, 255, 255));
+		button.setBounds(182, 324, 89, 23);
+		contentPane.add(button);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(326, 26, 456, 424);
+		contentPane.add(scrollPane);
+		
+		Object [] columns = {"Bname","Author","Genre","Available"};
+	    DefaultTableModel model = new DefaultTableModel();
+	    model.setColumnIdentifiers(columns);
+	    table.setModel(model);
+		JPanel panel = new JPanel();
+		scrollPane.setViewportView(panel);
+		panel.setLayout(null);
+		
+		table = new JTable();
+		table.setBounds(10, 11, 436, 402);
+		panel.add(table);
+	}
+
+}

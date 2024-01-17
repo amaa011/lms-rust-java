@@ -1,0 +1,89 @@
+package com.telebilling.service;
+import java.awt.*;
+import java.awt.event.*;
+
+import javax.swing.*;
+
+public class Sample
+{
+    private JFrame Home, User, Admin;
+    private ActionListener action;
+    private JButton showButton, hideButton;
+
+    public void createAndDisplayGUI()
+    {
+        Home = new JFrame("Home");
+        Home.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);      
+        Home.setLocationByPlatform(true);
+
+        JPanel contentPane1 = new JPanel();
+        contentPane1.setBackground(Color.BLUE);
+
+        showButton = new JButton("User");
+        hideButton = new JButton("Home");
+
+        action  = new ActionListener()
+        {
+            public void actionPerformed(ActionEvent ae)
+            {
+                JButton button = (JButton) ae.getSource();
+
+                /*
+                 * If this button is clicked, we will create a new JFrame,
+                 * and hide the previous one.
+                 */
+                if (button == showButton)
+                {
+                    User = new JFrame("User");
+                    User.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);      
+                    User.setLocationByPlatform(true);
+
+                    JPanel contentPane2 = new JPanel();
+                    contentPane2.setBackground(Color.DARK_GRAY);
+
+                    contentPane2.add(hideButton);
+                    User.getContentPane().add(contentPane2);
+                    User.setSize(300, 300);
+                    User.setVisible(true);
+                    Home.setVisible(false);
+                }
+                /*
+                 * Here we will dispose the previous frame, 
+                 * show the previous JFrame.
+                 */
+                else if (button == hideButton)
+                {
+                    Home.setVisible(true);
+                    User.setVisible(false);
+                    User.dispose();
+                }
+            }
+        };
+
+        showButton.addActionListener(action);
+        hideButton.addActionListener(action);
+
+        contentPane1.add(showButton);
+
+        Home.getContentPane().add(contentPane1);
+        Home.setSize(300, 300);
+        Home.setVisible(true);
+    }
+    public static void main(String... args)
+    {
+        /*
+         * Here we are Scheduling a JOB for Event Dispatcher
+         * Thread. The code which is responsible for creating
+         * and displaying our GUI or call to the method which 
+         * is responsible for creating and displaying your GUI
+         * goes into this SwingUtilities.invokeLater(...) thingy.
+         */
+        SwingUtilities.invokeLater(new Runnable()
+        {
+            public void run()
+            {
+                new Sample().createAndDisplayGUI();
+            }
+        });
+    }
+}

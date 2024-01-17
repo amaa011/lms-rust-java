@@ -1,0 +1,27 @@
+package com.webilling.service;
+import javax.jws.WebMethod;
+import javax.jws.WebService;
+
+@WebService
+
+public class WEWebService 
+{
+
+	@WebMethod
+	public String payWaterBillProcess(String AccountNo)
+	{
+		return "Transaction for Account No" + AccountNo + " completed sucessfully!";
+	}
+	public String payElectricityBillProcess(String AccountNo)
+	{
+		return "Transaction for Account No" + AccountNo + " completed sucessfully!";
+	}
+	public String payWaterBillAmount(String AccountNo)
+	{
+		return "Transaction for Account No" + AccountNo + " completed sucessfully!";
+	}
+	public String payElectricityBillAmount(String AccountNo)
+	{
+		return "Transaction for Account No" + AccountNo + " completed sucessfully!";
+	}
+}

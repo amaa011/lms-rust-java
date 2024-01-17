@@ -1,0 +1,52 @@
+package com.telebilling.service;
+
+import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.io.IOException;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+import com.telebilling.service.client.TELEWebServiceService;
+import java.awt.Font;
+
+public class Client2 extends JFrame {
+	private static final long serialVersionUID = 1L;
+	public Client2() {
+		setTitle("User");
+		getContentPane().setBackground(new Color(255, 248, 220));
+		getContentPane().setLayout(null);
+		
+		JButton btnNewButton = new JButton("Borrow");
+		btnNewButton.setBackground(new Color(154, 205, 50));
+		btnNewButton.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 12));
+		btnNewButton.setBounds(37, 78, 100, 51);
+		getContentPane().add(btnNewButton);
+		
+		JButton btnAdmin = new JButton("Return");
+		btnAdmin.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 12));
+		btnAdmin.setBackground(new Color(154, 205, 50));
+		btnAdmin.setBounds(166, 78, 100, 51);
+		getContentPane().add(btnAdmin);
+		
+		JButton btnHome = new JButton("Home");
+		btnHome.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 12));
+		btnHome.setBackground(new Color(154, 205, 50));
+		btnHome.setBounds(105, 140, 100, 51);
+		getContentPane().add(btnHome);
+		
+		
+	}
+	public static void main(String[] args) throws IOException
+    {   
+    	TELEWebServiceService service = new TELEWebServiceService();
+        com.telebilling.service.client.TELEWebService TELEWebService = service.getTELEWebServicePort(); 
+   
+ 
+        
+}
+}

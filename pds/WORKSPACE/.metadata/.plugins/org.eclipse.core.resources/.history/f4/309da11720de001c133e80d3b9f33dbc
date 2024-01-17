@@ -1,0 +1,63 @@
+package com.telebilling.service;
+import javax.jws.WebMethod;
+import javax.jws.WebService;
+import java.sql.*;
+import java.time.*;   
+import java.util.*;   
+ 
+@WebService
+public class TELEWebService 
+{
+	
+	
+	
+	
+	
+	@WebMethod
+	//***********************************************************
+	//methods to return actual amount balance for customer to pay
+	//***********************************************************
+	public static double payTELEBillAmount(String bd, int rp) throws SQLException 
+	{
+		
+		String per = null;
+		double fine;
+		String dbsURL= "jdbc:ucanaccess://C:/Users/sebin/Desktop/WORKSPACE/Borrow.accdb";
+		Connection con = DriverManager.getConnection(dbsURL);
+		String sql="SELECT Period FROM borrowtbl WHERE Bid="+bd;
+			
+	    PreparedStatement st = con.prepareStatement(sql);
+		ResultSet rs=  st.executeQuery();
+		while(rs.next()){
+			 per = rs.getString(1);
+			 System.out.println("Return values :"+per);
+		}
+		
+		int f =Integer.parseInt(per);
+		int calc=rp-f;
+		
+		if(calc <= 0){
+			 fine =0;
+			
+			
+		}else{
+			 fine= (int) (calc*0.250);
+			
+		}
+		
+		System.out.println("Return values :"+fine);
+      	
+		return fine;
+    }
+	
+	//***********************************************************
+	//methods to pay the amount..
+	//***********************************************************
+	
+	public static String paymobileBillProcess(String AccountNo, String Amount)
+	{
+		return "Transaction for acount number " + AccountNo + " completed sucessfully!";
+	}
+	
+	 
+}

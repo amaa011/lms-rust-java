@@ -1,0 +1,14 @@
+package com.telebilling.service;
+
+import javax.swing.JPanel;
+
+public class Interface extends JPanel {
+
+	/**
+	 * Create the panel.
+	 */
+	public Interface() {
+
+	}
+
+}

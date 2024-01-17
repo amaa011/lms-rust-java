@@ -1,0 +1,77 @@
+package com.telebilling.service; 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import java.net.*;
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+
+
+public class Client extends JFrame implements ActionListener
+{
+	private JPasswordField passwordField;
+	public Client() {
+		getContentPane().setBackground(new Color(0, 128, 255));
+		getContentPane().setForeground(new Color(0, 128, 255));
+		getContentPane().setLayout(null);
+		
+		JLabel lblNewLabel = new JLabel("Login Page");
+		lblNewLabel.setFont(new Font("Tw Cen MT", Font.BOLD, 24));
+		lblNewLabel.setBounds(370, 31, 117, 48);
+		getContentPane().add(lblNewLabel);
+		
+		JPanel panel = new JPanel();
+		panel.setBackground(new Color(255, 255, 255));
+		panel.setBounds(137, 101, 605, 305);
+		getContentPane().add(panel);
+		panel.setLayout(null);
+		
+		Label label = new Label("");
+		label.setBounds(62, 51, 59, 21);
+		panel.add(label);
+		
+		TextField textField = new TextField();
+		textField.setText("Username");
+		textField.setBounds(237, 66, 108, 21);
+		panel.add(textField);
+		
+		passwordField = new JPasswordField();
+		passwordField.setToolTipText("Password");
+		passwordField.setBounds(239, 128, 108, 19);
+		panel.add(passwordField);
+		
+		JButton btnNewButton = new JButton("Login");
+		btnNewButton.setBounds(188, 196, 85, 21);
+		panel.add(btnNewButton);
+		
+		JButton btnRegister = new JButton("Register");
+		btnRegister.setBounds(311, 196, 85, 21);
+		panel.add(btnRegister);
+		
+		JLabel lblNewLabel_1 = new JLabel("");
+		ImageIcon img1= new ImageIcon(this.getClass().getResource("/TELE-Billing/src/com/telebilling/service/images/user-286.png").getFile());
+		lblNewLabel_1.setIcon(new ImageIcon(img1));	
+		lblNewLabel_1.setBounds(51, 78, 45, 13);
+		panel.add(lblNewLabel_1);
+	}
+	
+	/**
+	 * 
+	 */
+	
+	  
+
+
+
+		public static void main(String []args) throws UnknownHostException
+		{
+					
+			 
+		}
+		
+		public void actionPerformed(ActionEvent ae) {
+		
+			
+		}
+}

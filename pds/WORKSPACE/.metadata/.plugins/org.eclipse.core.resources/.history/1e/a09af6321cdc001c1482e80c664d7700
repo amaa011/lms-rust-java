@@ -1,0 +1,52 @@
+package com.telebilling.service;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.io.IOException;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+import com.telebilling.service.client.TELEWebServiceService;
+import java.awt.Font;
+import javax.swing.JTextField;
+import javax.swing.JLabel;
+
+
+public class Borrow  extends JFrame{
+	private static final long serialVersionUID = 1L;
+	public Borrow() {
+		setTitle("Borrow");
+		getContentPane().setBackground(new Color(255, 248, 220));
+		getContentPane().setLayout(null);
+		
+		JButton btnNewButton = new JButton("User");
+		btnNewButton.setBackground(new Color(154, 205, 50));
+		btnNewButton.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 12));
+		btnNewButton.setBounds(37, 78, 100, 51);
+		getContentPane().add(btnNewButton);
+		
+		JButton btnAdmin = new JButton("Admin");
+		btnAdmin.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 12));
+		btnAdmin.setBackground(new Color(154, 205, 50));
+		btnAdmin.setBounds(160, 78, 93, 51);
+		getContentPane().add(btnAdmin);
+	}
+	
+	
+
+	private static JTextField textField;
+	private static JTextField textField_1;
+	public static void main(String[] args) throws IOException
+    {   
+    	TELEWebServiceService service = new TELEWebServiceService();
+        com.telebilling.service.client.TELEWebService TELEWebService = service.getTELEWebServicePort(); 
+   
+ 
+      
+        }
+}

@@ -1,0 +1,13 @@
+<project name="TELE Web Service Build" default="wsimport">
+ 
+    <target name="wsimport">
+ 
+        <exec executable="wsimport">
+ 
+            <arg line="-keep -s ./src -p com.telebilling.service.client http://localhost:9002/TELEWebService?wsdl"/>
+ 
+        </exec>           
+ 
+    </target>
+   
+</project>

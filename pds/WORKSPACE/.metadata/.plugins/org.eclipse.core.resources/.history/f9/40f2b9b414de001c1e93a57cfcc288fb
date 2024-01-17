@@ -1,0 +1,191 @@
+package com.telebilling.service;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.net.UnknownHostException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import java.awt.Font;
+import javax.swing.JTextField;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.border.LineBorder;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.JScrollPane;
+
+public class Borrow extends JFrame implements ActionListener
+{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	JPanel panel;
+	   JButton cancel;
+	   private JTextField textField;
+	   private JTextField textField_1;
+	   private JTable table;
+	   private JTextField textField_2;
+	   
+	     
+	   Borrow() {
+	   	setResizable(false);
+	      
+	      panel = new JPanel();
+	      panel.setBackground(new Color(255, 255, 224));
+	      panel.setLayout(null);
+	      
+	      setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	      getContentPane().add(panel, BorderLayout.CENTER);
+	      
+	      JButton btnBack = new JButton("Borrow");
+	      btnBack.addActionListener(new ActionListener() {
+	      	public void actionPerformed(ActionEvent e) {
+	      		
+String dbsURL= "jdbc:ucanaccess://C:/Users/sebin/Desktop/WORKSPACE/Library.accdb";
+       
+	      		try{
+	      			
+	      			String bid=textField.getText();
+	      			String b_d= textField_1.getText();
+	      			String p= textField_2.getText();
+	      			
+	      			Connection con = DriverManager.getConnection(dbsURL);
+	      			System.out.println("Connected To database");
+	      			
+	      			String sql="INSERT INTO Bookstbl (Bid, Borrow_date, Period) VALUES (?,?,?)";
+	      			
+	      			PreparedStatement st = con.prepareStatement(sql);
+	      			
+	      			st.setString(1, bid);
+	      			st.setString(2, b_d);
+	      			st.setString(3, p);
+	      			
+	      			
+	      			int rows = st.executeUpdate();
+	      			
+	      			if(rows > 0){
+	      				JOptionPane.showMessageDialog(null, "Book has been Successfully Borrowed!");
+	      			}
+	      			con.close();
+	      			
+	      		}catch(SQLException es){
+	      			
+	      			JOptionPane.showMessageDialog(null, es);
+	      		}
+	      	
+	      		
+	      	}
+	      });
+	    
+	     
+	      btnBack.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 12));
+	      btnBack.setBackground(new Color(154, 205, 50));
+	      btnBack.setBounds(26, 250, 126, 34);
+	      panel.add(btnBack);
+	      
+	      JButton btnHome = new JButton("Home");
+	      btnHome.addActionListener(new ActionListener() {
+	      	public void actionPerformed(ActionEvent e) {
+	      		Back();
+	      	}
+	      });
+	      btnHome.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 12));
+	      btnHome.setBackground(new Color(154, 205, 50));
+	      btnHome.setBounds(162, 250, 126, 34);
+	      panel.add(btnHome);
+	      
+	      JLabel lblNewLabel = new JLabel("Book ID");
+	      lblNewLabel.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 12));
+	      lblNewLabel.setBounds(36, 104, 97, 25);
+	      panel.add(lblNewLabel);
+	      
+	      textField = new JTextField();
+	      textField.setBounds(185, 106, 111, 20);
+	      panel.add(textField);
+	      textField.setColumns(10);
+	      
+	      JLabel lblDate = new JLabel("Date (YY/MM/DD)");
+	      lblDate.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 12));
+	      lblDate.setBounds(36, 153, 97, 25);
+	      panel.add(lblDate);
+	      
+	      textField_1 = new JTextField();
+	      textField_1.setColumns(10);
+	      textField_1.setBounds(185, 155, 111, 20);
+	      panel.add(textField_1);
+	      
+	      JScrollPane scrollPane = new JScrollPane();
+	      scrollPane.setBounds(306, 38, 409, 302);
+	      panel.add(scrollPane);
+	      
+	      JPanel panel_1 = new JPanel();
+	      scrollPane.setViewportView(panel_1);
+	      panel_1.setLayout(null);
+	      
+	      
+	      Object [] columns = {"Bname","Author","Genre","Available"};
+	      DefaultTableModel model = new DefaultTableModel();
+	      model.setColumnIdentifiers(columns);
+	      //table.setModel(model);
+	      table = new JTable();
+	      table.setBounds(10, 11, 389, 280);
+	      panel_1.add(table);
+	      
+	      JLabel lblPeriod = new JLabel("Period");
+	      lblPeriod.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 12));
+	      lblPeriod.setBounds(36, 205, 97, 25);
+	      panel.add(lblPeriod);
+	      
+	      textField_2 = new JTextField();
+	      textField_2.setColumns(10);
+	      textField_2.setBounds(185, 207, 111, 20);
+	      panel.add(textField_2);
+	      setTitle("User");
+	      setSize(731,410);
+	      setVisible(true);
+	      
+	      
+	      
+	   }
+		protected void Back() {
+			this.dispose();
+			  new Client();
+	}
+		//public static Connection connect()
+		//{
+		//try {
+		//        Class.forName("com.mysql.cj.jdbc.Driver");
+		        //System.out.println("Loaded driver");
+		 //       Connection con = DriverManager.getConnection("jdbc:mysql://localhost/mysql?user=root&password=edureka");
+		        //System.out.println("Connected to MySQL");
+		 //       return con;
+		// } 
+		// catch (Exception ex) {
+		 //       ex.printStackTrace();
+		// }
+		//return null;
+		//}
+
+
+	  	
+		public static void main(String []args) throws UnknownHostException
+		{
+			
+			new Borrow();		
+			
+		}
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+}
+	

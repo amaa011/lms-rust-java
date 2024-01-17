@@ -1,0 +1,16 @@
+package com.webilling.service;
+import javax.jws.WebMethod;
+import javax.jws.WebService;
+
+@WEWebService
+
+public class WebService 
+{
+
+	@WebMethod
+	public String sayGreeting(String name)
+	{
+		return "Greeting " + name + "!";
+	}
+	
+}

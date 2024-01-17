@@ -1,0 +1,113 @@
+package com.telebilling.service; 
+import com.telebilling.service.client.TELEWebServiceService;
+import java.io.*;
+import java.net.Socket;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.concurrent.TimeUnit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.beans.Statement;
+import java.net.*;
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+
+
+public class Client extends JFrame implements ActionListener
+{
+	
+	JPanel panel;
+	   JButton submit, cancel;
+	   
+	   Client() {
+	   	setResizable(false);
+	      
+	      // Submit
+	      submit = new JButton("Admin");
+	      submit.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 12));
+	      submit.setBounds(184, 56, 126, 34);
+	      submit.setBackground(new Color(154, 205, 50));
+	      
+	      panel = new JPanel();
+	      panel.setBackground(new Color(255, 255, 224));
+	      panel.setLayout(null);
+	      panel.add(submit);
+	
+	      
+	      setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	      // Adding the listeners to components..
+	      submit.addActionListener(this);
+	      submit.setActionCommand("Open");
+	      getContentPane().add(panel, BorderLayout.CENTER);
+	      
+	      JButton btnUser = new JButton("User");
+	      btnUser.addActionListener(new ActionListener() {
+	      	public void actionPerformed(ActionEvent e) {
+	      		 String cmd = e.getActionCommand();
+
+	 	        if(cmd.equals("Open"))
+	 	        {
+	 	            dispose();
+	 	            new Client2();
+	 	        }
+	      		
+	      		
+	      	}
+	      });
+	      
+	      btnUser.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 12));
+	      btnUser.setBackground(new Color(154, 205, 50));
+	      btnUser.setBounds(48, 56, 126, 34);
+	      panel.add(btnUser);
+	      setTitle("Home");
+	      setSize(384,264);
+	      setVisible(true);
+	      
+	    
+	      
+	      
+	   }
+	   
+	   
+	  	
+		public static void main(String []args) throws UnknownHostException
+		{
+					
+			 SwingUtilities.invokeLater(new Runnable(){
+
+		            @Override
+		            public void run()
+		            {
+		                new Client().setVisible(true);
+		            }
+
+		        });
+		}
+		
+		public void actionPerformed(ActionEvent ae) {
+			//try{
+				
+				//Socket sck = new Socket ("localhost",2021);   
+				
+				             //1
+				
+				//read student ID as input from user
+				//PrintStream ps = new PrintStream(sck.getOutputStream());
+			   
+				
+				//receive the other details from server	
+				//InputStreamReader ksr= new InputStreamReader(sck.getInputStream());
+				//BufferedReader kr=new BufferedReader(ksr);
+									//3
+				
+				//display it as output
+				
+			//}catch(IOException e)
+			//{
+				//e.printStackTrace();
+			//}
+		}
+}

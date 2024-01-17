@@ -1,0 +1,162 @@
+package com.telebilling.service;
+import com.telebilling.service.client.TELEWebServiceService;
+import java.awt.BorderLayout;
+import java.awt.Color;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import java.net.UnknownHostException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+
+import java.awt.Font;
+import javax.swing.JTextField;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
+
+public class Addbook extends JFrame implements ActionListener
+{
+	
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	JPanel panel;
+	   JButton cancel;
+	   private JTextField textField;
+	   private JTextField textField_1;
+	   private JTextField textField_2;
+	   
+	   Addbook() {
+	   	setResizable(false);
+	      
+	      panel = new JPanel();
+	      panel.setBackground(new Color(255, 255, 224));
+	      
+	      setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	      getContentPane().add(panel, BorderLayout.CENTER);
+	      
+	      JButton btnBack = new JButton("Add Book");
+	      btnBack.setBounds(64, 235, 126, 34);
+	      btnBack.addActionListener(new ActionListener() {
+	      	public void actionPerformed(ActionEvent e) {
+	      		
+	      		String Bname= textField.getText();
+	      		String author= textField_1.getText();
+	      		String genre= textField_2.getText();
+	      		
+	      		
+	      		String dbsURL= "jdbc:ucanaccess://C:/Users/sebin/Desktop/WORKSPACE/Library.accdb";
+	      		
+	      		try{
+	      			Connection con = DriverManager.getConnection(dbsURL);
+	      			System.out.println("Connected To database");
+	      			
+	      			String sql="INSERT INTO Bookstbl (Bname, Author, Genre, Available) VALUES (?,?,?,?)";
+	      			
+	      			PreparedStatement st = con.prepareStatement(sql);
+	      			
+	      			st.setString(1, Bname);
+	      			st.setString(2, author);
+	      			st.setString(3, genre);
+	      			st.setString(4, "yes");
+	      			
+	      			int rows = st.executeUpdate();
+	      			
+	      			if(rows > 0){
+	      				JOptionPane.showMessageDialog(null, "Book has been added to database");
+	      			}
+	      			con.close();
+	      			
+	      		}catch(SQLException es){
+	      			
+	      			JOptionPane.showMessageDialog(null, es);
+	      		}
+	      	
+	      		
+	      	}
+	      });
+	      panel.setLayout(null);
+	    
+	     
+	      btnBack.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 12));
+	      btnBack.setBackground(new Color(154, 205, 50));
+	      panel.add(btnBack);
+	      
+	      JButton btnHome = new JButton("Home");
+	      btnHome.setBounds(244, 235, 126, 34);
+	      btnHome.addActionListener(new ActionListener() {
+	      	public void actionPerformed(ActionEvent e) {
+	      		Back();
+	      	}
+	      });
+	      btnHome.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 12));
+	      btnHome.setBackground(new Color(154, 205, 50));
+	      panel.add(btnHome);
+	      
+	      JLabel lblNewLabel = new JLabel("Genre");
+	      lblNewLabel.setBounds(91, 163, 126, 34);
+	      lblNewLabel.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 16));
+	      panel.add(lblNewLabel);
+	      
+	      textField = new JTextField();
+	      textField.setBounds(224, 168, 146, 28);
+	      panel.add(textField);
+	      textField.setColumns(10);
+	      
+	      JLabel lblDate = new JLabel("Author");
+	      lblDate.setBounds(91, 129, 97, 25);
+	      lblDate.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 16));
+	      panel.add(lblDate);
+	      
+	      textField_1 = new JTextField();
+	      textField_1.setBounds(224, 84, 146, 28);
+	      textField_1.setColumns(10);
+	      panel.add(textField_1);
+	      
+	      JLabel lblBookName = new JLabel("Book Name");
+	      lblBookName.setBounds(91, 79, 97, 34);
+	      lblBookName.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 16));
+	      panel.add(lblBookName);
+	      
+	      textField_2 = new JTextField();
+	      textField_2.setBounds(224, 129, 146, 28);
+	      textField_2.setColumns(10);
+	      panel.add(textField_2);
+	      setTitle("User");
+	      setSize(470,374);
+	      setVisible(true);
+	      
+	      
+	      
+	   }
+		protected void Back() {
+			this.dispose();
+			  new Client();
+	}
+
+
+	  	
+		public static void main(String []args) throws UnknownHostException
+		{
+			
+			new Addbook();		
+			
+		}
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+}
+	

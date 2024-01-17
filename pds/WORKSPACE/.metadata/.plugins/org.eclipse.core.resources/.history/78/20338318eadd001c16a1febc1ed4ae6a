@@ -1,0 +1,132 @@
+package com.telebilling.service;
+import java.awt.BorderLayout;
+import java.awt.Color;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import java.net.UnknownHostException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+
+import java.awt.Font;
+import javax.swing.JTextField;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
+
+public class Deletebook extends JFrame implements ActionListener
+{
+	
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	JPanel panel;
+	   JButton cancel;
+	   private JTextField textField_2;
+	   
+	   Deletebook() {
+	   	setResizable(false);
+	      
+	      panel = new JPanel();
+	      panel.setBackground(new Color(255, 255, 224));
+	      
+	      setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	      getContentPane().add(panel, BorderLayout.CENTER);
+	      
+	      JButton btnBack = new JButton("Delete book");
+	      btnBack.setBounds(91, 209, 126, 34);
+	      btnBack.addActionListener(new ActionListener() {
+	      	public void actionPerformed(ActionEvent e) {
+	      		
+
+	      		
+	      		
+	      		String dbsURL= "jdbc:ucanaccess://C:/Users/sebin/Desktop/WORKSPACE/Library.accdb";
+	      		
+	      		try{
+	      			Connection con = DriverManager.getConnection(dbsURL);
+	      			System.out.println("Connected To database");
+	      			
+	      			String sql="DELETE FROM Bookstbl WHERE Bname'"+textField_2.getText() +"' ";
+	      			
+	      			PreparedStatement st = con.prepareStatement(sql);
+	      			
+	      			
+	      			int rows = st.executeUpdate();
+	      			
+	      			if(rows > 0){
+	      				JOptionPane.showMessageDialog(null, "Book has been Deleted from the database!");
+	      			}
+	      			con.close();
+	      			
+	      		}catch(SQLException es){
+	      			
+	      			JOptionPane.showMessageDialog(null, es);
+	      		}
+	      	
+	      	}
+	      });
+	      panel.setLayout(null);
+	    
+	     
+	      btnBack.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 12));
+	      btnBack.setBackground(new Color(154, 205, 50));
+	      panel.add(btnBack);
+	      
+	      JButton btnHome = new JButton("Home");
+	      btnHome.setBounds(257, 209, 126, 34);
+	      btnHome.addActionListener(new ActionListener() {
+	      	public void actionPerformed(ActionEvent e) {
+	      		Back();
+	      	}
+	      });
+	      btnHome.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 12));
+	      btnHome.setBackground(new Color(154, 205, 50));
+	      panel.add(btnHome);
+	      
+	      JLabel lblNewLabel = new JLabel("Book ID");
+	      lblNewLabel.setBounds(91, 117, 126, 34);
+	      lblNewLabel.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 16));
+	      panel.add(lblNewLabel);
+	      
+	      textField_2 = new JTextField();
+	      textField_2.setBounds(256, 122, 111, 28);
+	      textField_2.setColumns(10);
+	      panel.add(textField_2);
+	      setTitle("User");
+	      setSize(470,374);
+	      setVisible(true);
+	      
+	      
+	      
+	   }
+		protected void Back() {
+			this.dispose();
+			  new Client();
+	}
+
+
+	  	
+		public static void main(String []args) throws UnknownHostException
+		{
+			
+			new Deletebook();		
+			
+		}
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+}
+	

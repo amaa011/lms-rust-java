@@ -1,0 +1,59 @@
+package com.telebilling.service;
+import javax.jws.WebMethod;
+import javax.jws.WebService;
+import java.sql.*;
+import java.time.*;   
+import java.util.*;   
+ 
+@WebService
+public class TELEWebService 
+{
+	
+	
+	
+	
+	
+	@WebMethod
+	//***********************************************************
+	//methods to return actual amount balance for customer to pay
+	//***********************************************************
+	public static void payTELEBillAmount(LocalDate rdate, int bd) throws SQLException 
+	{
+		LocalDate rt=rdate;
+		//int period=null;
+		
+		String dbsURL= "jdbc:ucanaccess://C:/Users/sebin/Desktop/WORKSPACE/Borrow.accdb";
+		Connection con = DriverManager.getConnection(dbsURL);
+		String sql="SELECT Borrow_date FROM borrowtbl WHERE Bid="+bd;
+			
+			PreparedStatement st = con.prepareStatement(sql);
+		//LocalDate borrow_date=  st.executeQuery();
+		
+		
+		
+		
+      	//return period;
+    }
+	
+	//***********************************************************
+	//methods to pay the amount..
+	//***********************************************************
+	public static String payFixedLineBillProcess(String AccountNo, String Amount)
+	{
+		return "Transaction for account number " + AccountNo + " completed sucessfully!";
+	}
+	public static String paymobileBillProcess(String AccountNo, String Amount)
+	{
+		return "Transaction for acount number " + AccountNo + " completed sucessfully!";
+	}
+	
+	static int find(LocalDate  first_date)   
+    {   
+		
+        
+        LocalDate second_date = null;
+		Period difference = Period.between(first_date, second_date);   
+           return difference.getDays();  
+              
+    }   
+}

@@ -1,0 +1,113 @@
+package com.telebilling.service;
+import java.awt.BorderLayout;
+import java.awt.Color;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import java.net.UnknownHostException;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+
+import java.awt.Font;
+import javax.swing.JTextField;
+import javax.swing.JLabel;
+
+
+public class Rturn extends JFrame implements ActionListener
+{
+	
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	JPanel panel;
+	   JButton cancel;
+	   private JTextField textField;
+	   private JTextField textField_1;
+	   
+	   Rturn() {
+	   	setResizable(false);
+	      
+	      panel = new JPanel();
+	      panel.setBackground(new Color(255, 255, 224));
+	      panel.setLayout(null);
+	      
+	      setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	      getContentPane().add(panel, BorderLayout.CENTER);
+	      
+	      JButton btnBack = new JButton("Return Book");
+	      btnBack.addActionListener(new ActionListener() {
+	      	public void actionPerformed(ActionEvent e) {
+	      		
+	      		
+	      	}
+	      });
+	    
+	     
+	      btnBack.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 12));
+	      btnBack.setBackground(new Color(154, 205, 50));
+	      btnBack.setBounds(59, 159, 126, 34);
+	      panel.add(btnBack);
+	      
+	      JButton btnHome = new JButton("Home");
+	      btnHome.addActionListener(new ActionListener() {
+	      	public void actionPerformed(ActionEvent e) {
+	      		Back();
+	      	}
+	      });
+	      btnHome.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 12));
+	      btnHome.setBackground(new Color(154, 205, 50));
+	      btnHome.setBounds(209, 159, 126, 34);
+	      panel.add(btnHome);
+	      
+	      JLabel lblNewLabel = new JLabel("Book ID");
+	      lblNewLabel.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 12));
+	      lblNewLabel.setBounds(59, 37, 97, 25);
+	      panel.add(lblNewLabel);
+	      
+	      textField = new JTextField();
+	      textField.setBounds(224, 39, 111, 20);
+	      panel.add(textField);
+	      textField.setColumns(10);
+	      
+	      JLabel lblDate = new JLabel("Date (yy/mm/dd)");
+	      lblDate.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 12));
+	      lblDate.setBounds(59, 76, 97, 25);
+	      panel.add(lblDate);
+	      
+	      textField_1 = new JTextField();
+	      textField_1.setColumns(10);
+	      textField_1.setBounds(224, 78, 111, 20);
+	      panel.add(textField_1);
+	      setTitle("User");
+	      setSize(384,264);
+	      setVisible(true);
+	      
+	      
+	      
+	   }
+		protected void Back() {
+			this.dispose();
+			  new Client();
+	}
+
+
+	  	
+		public static void main(String []args) throws UnknownHostException
+		{
+			
+			new Rturn();		
+			
+		}
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+}
+	

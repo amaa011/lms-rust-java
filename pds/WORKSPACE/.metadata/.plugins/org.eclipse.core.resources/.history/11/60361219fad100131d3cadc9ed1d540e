@@ -1,0 +1,57 @@
+package com.webilling.service;
+import javax.jws.WebMethod;
+import javax.jws.WebService;
+
+@WebService
+
+public class WEWebService 
+{
+
+	@WebMethod
+	
+	//methods to pay the amount..
+	public String payWaterBillProcess(String AccountNo)
+	{
+		return "Transaction for Account No" + AccountNo + " completed sucessfully!";
+	}
+	public String payElectricityBillProcess(String AccountNo)
+	{
+		return "Transaction for Account No" + AccountNo + " completed sucessfully!";
+	}
+	
+	//methods to return actual amount balance for customer to pay
+	public String payWaterBillAmount(String Type, String Month, String AccountNo)
+	{
+		String amount = calculate(Type, Month, AccountNo);
+		return amount;
+	}
+	public String payElectricityBillAmount(String Type, String Month, String AccountNo)
+	{
+		String amount = calculate(Type, Month, AccountNo);
+		return amount;
+	}
+	
+	String calculate(String Type, String Month, String AccountNo)
+    {
+		String amount="0.00";
+		if(Type == "Electricity")
+		{
+			if(Month=="January")
+			{
+				amount = "30.00";
+			}else if(Month=="February"){  
+				amount = "45.00";
+			}else if(Month=="March"){  
+				amount = "60.00";
+			}else if(Month=="April"){  
+				amount = "75.00";
+			}else{
+				amount="0.00";
+			}
+      }else if(Type == "Water"){
+      
+      	 
+      }
+      	return amount;	
+    }
+}

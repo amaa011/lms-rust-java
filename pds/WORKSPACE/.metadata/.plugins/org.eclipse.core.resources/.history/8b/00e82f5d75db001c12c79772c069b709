@@ -1,0 +1,91 @@
+package com.telebilling.service; 
+import com.telebilling.service.client.TELEWebServiceService;
+import java.io.*;
+import java.net.Socket;
+import java.awt.BorderLayout;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.net.*;
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+
+
+public class Client {
+
+//Most of the values and calling service is manual here. We can take as input by writing code too. 
+
+    public static void main(String[] args) throws IOException
+    {   
+    	TELEWebServiceService service = new TELEWebServiceService();
+        com.telebilling.service.client.TELEWebService TELEWebService = service.getTELEWebServicePort(); 
+   
+ 
+        JFrame frame = new JFrame("Login");
+        JPanel panel = new JPanel();
+        panel.setLayout(new FlowLayout());
+        JLabel label = new JLabel("User");
+        JButton button = new JButton();
+        
+        button.setText("Button");
+        panel.add(label);
+        panel.add(button);
+        frame.add(panel);
+        frame.setSize(200, 300);
+        frame.setLocationRelativeTo(null);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setVisible(true);
+        
+        JLabel label1 = new JLabel("Admin");
+        JButton button1 = new JButton();
+        button1.setText("Admin");
+        panel.add(label1);
+        panel.add(button1);
+        frame.add(panel);
+        frame.setSize(200, 300);
+        frame.setLocationRelativeTo(null);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setVisible(true);
+        }
+        
+        //read Input details from user
+        //BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+       // String Type="", TypeDescription="";
+       // String TransactionStatus = "";  
+        
+       // System.out.println("Please select type of service");
+       // System.out.println("Type: 1 for Fixed Line and 2 for Mobile");
+       // int x = Integer.parseInt(br.readLine());
+       // if(x ==1){ 
+        //	Type="FixedLineBILL";
+        //	TypeDescription = "Fixed Line";
+        //}else{
+        //	Type="mobileBill";
+        //	TypeDescription = "Mobile Line";
+       // }
+       // System.out.println("Enter the preferred month ");
+       // String Month=br.readLine();
+       // System.out.println("Enter your number");
+       // String AccountNo=br.readLine();   
+        
+        	
+        //Search for Amount for client's account no. from web service  
+        //String amount = TELEWebService.payTELEBillAmount(Type, Month, AccountNo);
+       // System.out.println("Web service response: " + amount);
+        
+        //Pay the amount through the web service 
+       // if(Type.equals("FixedLineBILL")){
+        //	 TransactionStatus = TELEWebService.payFixedLineBillProcess(AccountNo, amount);
+       // }else{
+        //	 TransactionStatus = TELEWebService.paymobileBillProcess(AccountNo, amount);
+       // }
+      //  System.out.println("Web service response: " + TransactionStatus);
+   
+
+
+
+}
+
+
+

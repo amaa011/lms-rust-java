@@ -1,0 +1,123 @@
+package com.telebilling.service; 
+import com.telebilling.service.client.TELEWebServiceService;
+import java.io.*;
+import java.net.Socket;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.concurrent.TimeUnit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.beans.Statement;
+import java.net.*;
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+
+
+public class Client extends JFrame implements ActionListener
+{
+	
+	JPanel panel;
+	   JLabel user_label, studentname_label, modulename_label, message;
+	   JTextField userName_text, studentName_text;
+	   JButton submit, cancel;
+	   private JTextField textField;
+	   
+	   Client() {
+	      // User name Label
+	      user_label = new JLabel();
+	      user_label.setText("User Name:");
+	      user_label.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 12));
+	      user_label.setBounds(23, 11, 151, 34);
+	      userName_text = new JTextField();
+	      userName_text.setBounds(184, 11, 174, 34);
+	      
+	      studentname_label = new JLabel();
+	      studentname_label.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 12));
+	      studentname_label.setBounds(23, 101, 142, 34);
+	      studentname_label.setText("Student Name:");
+	      studentName_text = new JTextField();
+	      studentName_text.setBounds(184, 101, 174, 34);
+	      
+	      modulename_label = new JLabel();
+	      modulename_label.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 12));
+	      modulename_label.setBounds(23, 151, 142, 34);
+	      modulename_label.setText("Module Name:");
+	      
+	      // Submit
+	      submit = new JButton("SEARCH...");
+	      submit.setBounds(184, 56, 174, 34);
+	      submit.setBackground(new Color(154, 205, 50));
+	      
+	      panel = new JPanel();
+	      panel.setBackground(new Color(255, 255, 224));
+	      panel.setLayout(null);
+	      panel.add(user_label);
+	      panel.add(userName_text);
+	      
+	      
+	      message = new JLabel();
+	      message.setBounds(0, 45, 184, 45);
+	      panel.add(message);
+	      panel.add(submit);
+	      
+	      panel.add(studentname_label);
+	      panel.add(studentName_text);
+	      panel.add(modulename_label);
+	      
+	      textField = new JTextField();
+	      textField.setBounds(184, 150, 174, 36);
+	      panel.add(textField);
+	      textField.setColumns(10);
+	      
+	      setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	      // Adding the listeners to components..
+	      submit.addActionListener(this);
+	      getContentPane().add(panel, BorderLayout.CENTER);
+	      setTitle("Please Click Here !");
+	      setSize(384,264);
+	      setVisible(true);
+	      
+	      
+	      
+	   }
+	  	
+		public static void main(String []args) throws UnknownHostException
+		{
+			new Client();		
+			
+		}
+		
+		public void actionPerformed(ActionEvent ae) {
+			try{
+				
+				Socket sck = new Socket ("localhost",2021);   
+				
+				String studentID = userName_text.getText();              //1
+				
+				//read student ID as input from user
+				PrintStream ps = new PrintStream(sck.getOutputStream());
+			    ps.println(studentID);
+				
+				//receive the other details from server	
+				InputStreamReader ksr= new InputStreamReader(sck.getInputStream());
+				BufferedReader kr=new BufferedReader(ksr);
+				System.out.println("Receving the student name...");
+				String studentname = kr.readLine();
+				studentName_text.setText(studentname);                      //2
+				System.out.println("Receving the module name...");
+				String modulename = kr.readLine();
+				moduleName_text.setText(modulename);						//3
+				
+				//display it as output
+				System.out.println(studentname);
+				System.out.println(modulename);
+			}catch(IOException e)
+			{
+				e.printStackTrace();
+			}
+		}
+
+}

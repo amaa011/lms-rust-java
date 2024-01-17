@@ -1,0 +1,112 @@
+package com.telebilling.service;
+import java.awt.BorderLayout;
+import java.awt.Color;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import java.net.UnknownHostException;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+
+import java.awt.Font;
+import javax.swing.JTextField;
+import javax.swing.JLabel;
+
+
+public class Client2 extends JFrame implements ActionListener
+{
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	JPanel panel;
+	   JButton submit, cancel;
+	   
+	   Client2() {
+	   	setResizable(false);
+	      
+	      // Submit
+	      submit = new JButton("Return");
+	     
+	      submit.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 12));
+	      submit.setBounds(184, 56, 126, 34);
+	      submit.setBackground(new Color(154, 205, 50));
+	      
+	      panel = new JPanel();
+	      panel.setBackground(new Color(255, 255, 224));
+	      panel.setLayout(null);
+	      panel.add(submit);
+	      
+	      setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	      // Adding the listeners to components..
+	      submit.addActionListener(this);
+	      getContentPane().add(panel, BorderLayout.CENTER);
+	      
+	      JButton btnUser = new JButton("Borrow");
+	      btnUser.addMouseListener(new MouseAdapter() {
+	      	@Override
+	      	public void mouseClicked(MouseEvent e) {
+	      		Open();
+	      	}
+	      });
+	      btnUser.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 12));
+	      btnUser.setBackground(new Color(154, 205, 50));
+	      btnUser.setBounds(48, 56, 126, 34);
+	      panel.add(btnUser);
+	      
+	      JButton btnBack = new JButton("Back");
+	      btnBack.addMouseListener(new MouseAdapter() {
+	      	@Override
+	      	public void mouseClicked(MouseEvent e) {
+	      		Back();
+	      	}
+	      });
+	      btnBack.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 12));
+	      btnBack.setBackground(new Color(154, 205, 50));
+	      btnBack.setBounds(119, 119, 126, 34);
+	      panel.add(btnBack);
+	      setTitle("User");
+	      setSize(384,264);
+	      setVisible(true);
+	      
+	      
+	      
+	   }
+		protected void Open() {
+			this.dispose();
+			new Borrow();
+	}
+		protected void Back() {
+			this.dispose();
+			  new Client();
+	}
+		protected void open2() {
+			this.dispose();
+			  new Rturn();
+	}
+
+
+	  	
+		public static void main(String []args) throws UnknownHostException
+		{
+			//TELEWebServiceService service = new TELEWebServiceService();
+	       // com.telebilling.service.client.TELEWebService TELEWebService = service.getTELEWebServicePort(); 
+			new Client2();		
+			
+		}
+		@Override
+		public void actionPerformed(ActionEvent e) {
+	
+			this.dispose();
+			Rturn r = new Rturn();
+			r.setVisible(true);
+		}
+		
+		
+}
+	

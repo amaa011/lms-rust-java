@@ -1,0 +1,126 @@
+package com.telebilling.service;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+
+
+public class Return extends JFrame {
+	private static final long serialversionUID = 1L;
+	private JTextField textField;
+	private JTextField textField_1;
+	 
+	public Return(){
+		setResizable(false);
+		setTitle("User");
+		getContentPane().setBackground(new Color(255, 248, 220));
+		getContentPane().setLayout(null);
+		
+		JButton btnAdmin = new JButton("Return Book");
+		btnAdmin.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+				 BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+			       String Type="", TypeDescription="";
+			        String TransactionStatus = "";  
+			        
+			       System.out.println("Please select type of service");
+			       System.out.println("Type: 1 for Fixed Line and 2 for Mobile");
+			       int x = 0;
+				try {
+					x = Integer.parseInt(br.readLine());
+				} catch (NumberFormatException e2) {
+					// TODO Auto-generated catch block
+					e2.printStackTrace();
+				} catch (IOException e2) {
+					// TODO Auto-generated catch block
+					e2.printStackTrace();
+				}
+			       if(x ==1){ 
+			       	Type="FixedLineBILL";
+			        	TypeDescription = "Fixed Line";
+			        }else{
+			        	Type="mobileBill";
+			        	TypeDescription = "Mobile Line";
+			        }
+			        System.out.println("Enter the preferred month ");
+			        String Month = null;
+					try {
+						Month = br.readLine();
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+			        System.out.println("Enter your number");
+			        String AccountNo = null;
+					try {
+						AccountNo = br.readLine();
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}   
+			        
+			        	
+			        //Search for Amount for client's account no. from web service  
+			        String amount = TELEWebService.payTELEBillAmount(Type, Month, AccountNo);
+			        System.out.println("Web service response: " + amount);
+			        
+			        //Pay the amount through the web service 
+			        if(Type.equals("FixedLineBILL")){
+			        	 TransactionStatus = TELEWebService.payFixedLineBillProcess(AccountNo, amount);
+			        }else{
+			        	 TransactionStatus = TELEWebService.paymobileBillProcess(AccountNo, amount);
+			        }
+			       System.out.println("Web service response: " + TransactionStatus);
+			}
+		});
+		btnAdmin.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 12));
+		btnAdmin.setBackground(new Color(154, 205, 50));
+		btnAdmin.setBounds(94, 166, 100, 51);
+		getContentPane().add(btnAdmin);
+		
+		JButton btnHome = new JButton("Home");
+		btnHome.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 12));
+		btnHome.setBackground(new Color(154, 205, 50));
+		btnHome.setBounds(250, 166, 100, 51);
+		getContentPane().add(btnHome);
+		
+		JLabel lblNewLabel = new JLabel("Book ID");
+		lblNewLabel.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 12));
+		lblNewLabel.setBounds(106, 51, 66, 28);
+		getContentPane().add(lblNewLabel);
+		
+		textField = new JTextField();
+		textField.setBounds(220, 51, 116, 28);
+		getContentPane().add(textField);
+		textField.setColumns(10);
+		
+		JLabel lblDate = new JLabel("Date");
+		lblDate.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 12));
+		lblDate.setBounds(106, 95, 66, 28);
+		getContentPane().add(lblDate);
+		
+		textField_1 = new JTextField();
+		textField_1.setColumns(10);
+		textField_1.setBounds(220, 99, 116, 28);
+		getContentPane().add(textField_1);
+	}
+
+	protected void Open() {
+		this.setVisible(false);
+		new Client2();
+}
+
+}

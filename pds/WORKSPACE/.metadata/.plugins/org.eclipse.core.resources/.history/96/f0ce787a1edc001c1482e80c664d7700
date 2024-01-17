@@ -1,0 +1,58 @@
+package com.telebilling.service; 
+import com.telebilling.service.client.TELEWebServiceService;
+import java.io.*;
+import java.net.Socket;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.concurrent.TimeUnit;
+import java.awt.BorderLayout;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.beans.Statement;
+import java.net.*;
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+
+
+public class Client extends JFrame {
+	private static final long serialVersionUID = 1L;
+	
+	
+	public Client() {
+		setResizable(false);
+		setTitle("Home");
+		getContentPane().setBackground(new Color(255, 248, 220));
+		getContentPane().setLayout(null);
+		
+		JButton btnNewButton = new JButton("User");
+		btnNewButton.setBackground(new Color(154, 205, 50));
+		btnNewButton.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 12));
+		btnNewButton.setBounds(37, 78, 100, 51);
+		getContentPane().add(btnNewButton);
+		
+		JButton btnAdmin = new JButton("Admin");
+		btnAdmin.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 12));
+		btnAdmin.setBackground(new Color(154, 205, 50));
+		btnAdmin.setBounds(160, 78, 93, 51);
+		getContentPane().add(btnAdmin);
+		
+		
+	}
+
+	    
+
+//Most of the values and calling service is manual here. We can take as input by writing code too. 
+
+    public static void main(String[] args) throws IOException
+    {   
+    	TELEWebServiceService service = new TELEWebServiceService();
+        com.telebilling.service.client.TELEWebService TELEWebService = service.getTELEWebServicePort(); 
+   
+
+	
+}
+}

@@ -1,0 +1,67 @@
+package com.telebilling.service;
+import javax.jws.WebMethod;
+import javax.jws.WebService;
+import java.sql.*;
+   
+@WebService
+public class TELEWebService 
+{
+	@WebMethod
+	//***********************************************************
+	//methods to return actual amount balance for customer to pay
+	//***********************************************************
+	public String payTELEBillAmount(String Type, String Month, String AccountNo) 
+	{
+		String amount="0.000";
+		
+		Connection con = null;
+         
+	    try {
+		     Class.forName("net.ucanaccess.jdbc.UcanaccessDriver"); 
+			//make a connection
+			con=DriverManager.getConnection("jdbc:ucanaccess://dbTel.accdb");
+			System.out.println("Connection Successful");
+			//creating object of statement
+			Statement stat=con.createStatement();
+			String sql="SELECT * FROM billingDetails where AccNo=" + AccountNo + " and AccType='" + Type + "' and billMonth='" + Month + "'";
+			//System.out.println(sql);
+	        ResultSet rs = stat.executeQuery(sql);
+		  
+		    while(rs.next()) {         
+		      	amount = rs.getString("billAmount");
+		    }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	      } catch (ClassNotFoundException e) {
+	    	  e.printStackTrace();
+	      } finally {
+	        try {
+	          if(con != null) {
+	            con.close();
+	            con = null;
+	          }
+	        } catch (SQLException e) {}
+	      }
+      	return amount;	
+    }
+	
+	//***********************************************************
+	//methods to pay the amount..
+	//***********************************************************
+	public String payFixedLineBillProcess(String AccountNo, String Amount)
+	{
+		return "Transaction for account number " + AccountNo + " completed sucessfully!";
+	}
+	public String paymobileBillProcess(String AccountNo, String Amount)
+	{
+		return "Transaction for acount number " + AccountNo + " completed sucessfully!";
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+}
